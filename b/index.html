@@ -91,7 +91,7 @@ p{margin:0}
 .hero .points span{display:flex;align-items:center;gap:6px}
 .hero .points svg{width:16px;height:16px;color:var(--blue)}
 .hero .visual{position:relative;min-width:0}
-.hero .visual img{border-radius:var(--radius) 60px var(--radius) var(--radius);aspect-ratio:5/4;object-fit:cover;width:100%;box-shadow:0 24px 50px rgba(14,42,76,.18)}
+.hero .visual img{border-radius:var(--radius) 60px var(--radius) var(--radius);aspect-ratio:5/4;object-fit:cover;width:100%;height:auto;box-shadow:0 24px 50px rgba(14,42,76,.18)}
 .hero .badge{position:absolute;left:-18px;bottom:26px;background:#fff;border-radius:12px;box-shadow:0 10px 30px rgba(14,42,76,.16);padding:14px 18px;display:flex;align-items:center;gap:14px}
 .hero .badge .num{font-family:var(--font-latin);font-size:30px;font-weight:700;color:var(--navy);line-height:1}
 .hero .badge .num small{font-family:var(--font-body);font-size:13px;margin-left:3px}
@@ -295,11 +295,15 @@ form{display:grid;grid-template-columns:1fr 1fr;gap:18px 18px;min-width:0;backgr
 @media (max-width:640px){
   .topbar span:last-child{display:none}
   .head-tel{display:none}
-  .hero .wrap{grid-template-columns:1fr;padding-block:36px 48px}
-  .hero .visual{order:-1}
-  .hero .visual img{border-radius:var(--radius);aspect-ratio:16/11}
-  .hero .badge{left:12px;bottom:-14px;padding:10px 14px}
-  .hero .badge .num{font-size:24px}
+  .hero .wrap{grid-template-columns:1fr;padding-block:28px 44px;gap:22px}
+  .hero .copy{gap:14px}
+  .hero h1{font-size:26px}
+  .hero .lead{font-size:14.5px}
+  .hero .visual{margin-top:6px;margin-bottom:10px}
+  .hero .visual img{border-radius:var(--radius);aspect-ratio:16/9;box-shadow:0 12px 28px rgba(14,42,76,.14)}
+  .hero .badge{left:12px;bottom:-12px;padding:8px 12px;gap:10px}
+  .hero .badge .num{font-size:22px}
+  .hero .badge .lbl{font-size:11px}
   .hero .actions .btn{width:100%}
   .reasons,.svc-grid,.work-grid,.voices{grid-template-columns:1fr}
   .footer .wrap{grid-template-columns:1fr}

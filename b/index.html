@@ -49,15 +49,16 @@ p{margin:0}
 /* demo banner */
 .demo{background:#fff3e6;color:#7a3f00;border-bottom:1px solid #f3d5b5;font-size:12.5px;display:flex;align-items:center;justify-content:center;gap:14px;padding:7px var(--gutter);line-height:1.6}
 .demo b{font-weight:700}
-.demo button{background:none;border:1px solid #d9a46d;color:inherit;border-radius:999px;font:inherit;padding:1px 10px;cursor:pointer;white-space:nowrap;flex:none}
+.demo button{background:none;border:1px solid #d9a46d;color:inherit;border-radius:999px;font:inherit;padding:5px 12px;min-height:32px;cursor:pointer;white-space:nowrap;flex:none}
 
 /* header */
 .topbar{background:var(--navy);color:#cfe0f5;font-size:12.5px}
 .topbar .wrap{display:flex;justify-content:space-between;align-items:center;height:34px;gap:16px}
 .topbar span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+.topbar .short{display:none}
 .header{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:rgba(255,255,255,.94);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
 .header .wrap{display:flex;align-items:center;justify-content:space-between;height:74px;gap:20px}
-.brand{display:flex;align-items:center;gap:12px;min-width:0}
+.brand{display:flex;align-items:center;gap:12px;min-width:0;margin-right:16px}
 .brand svg{width:40px;height:40px;flex:none}
 .brand .name{font-family:var(--font-latin);font-size:26px;font-weight:700;letter-spacing:.1em;line-height:1;color:var(--navy)}
 .brand .sub{display:block;font-size:11px;letter-spacing:.12em;color:var(--fg-2);margin-top:3px;white-space:nowrap}
@@ -255,7 +256,8 @@ form{display:grid;grid-template-columns:1fr 1fr;gap:18px 18px;min-width:0;backgr
 .footer .brand .sub{color:#cfe0f5}
 .footer address{font-style:normal;margin-top:14px;line-height:1.8}
 .footer h4{color:#fff;font-size:13.5px;margin-bottom:10px;letter-spacing:.06em}
-.footer ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:7px}
+.footer ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:2px}
+.footer ul a{display:inline-block;padding:6px 0}
 .footer .copy{border-top:1px solid rgba(255,255,255,.14);text-align:center;padding:16px var(--gutter);font-family:var(--font-latin);letter-spacing:.08em;font-size:12px}
 
 /* reveal */
@@ -276,7 +278,7 @@ form{display:grid;grid-template-columns:1fr 1fr;gap:18px 18px;min-width:0;backgr
   .mobile-nav .mtel small{display:block;font-family:var(--font-body);font-size:12px;color:var(--fg-2);font-weight:400}
   .mobile-nav .close{position:absolute;top:calc(env(safe-area-inset-top,0px) + 18px);right:var(--gutter);background:#fff;border:1px solid var(--line);color:var(--navy);width:44px;height:44px;border-radius:50%;font-size:22px;cursor:pointer}
   .trust .wrap{grid-template-columns:1fr 1fr}
-  .trust .item{padding:18px 16px}
+  .trust .item{padding:18px 14px}
   .trust .item:nth-child(odd){border-left:0;padding-left:0}
   .trust .item:nth-child(-n+2){border-bottom:1px solid var(--line)}
   .reasons,.svc-grid,.work-grid,.voices{grid-template-columns:1fr 1fr}
@@ -293,7 +295,13 @@ form{display:grid;grid-template-columns:1fr 1fr;gap:18px 18px;min-width:0;backgr
   .lb-inner img{max-height:40vh}
 }
 @media (max-width:640px){
-  .topbar span:last-child{display:none}
+  .topbar .wrap > span:last-child{display:none}
+  .trust .wrap{grid-template-columns:1fr}
+  .trust .item{padding:12px 0;border-left:0;border-bottom:1px solid var(--line)}
+  .trust .item:last-child{border-bottom:0}
+  .trust svg{width:32px;height:32px}
+  .topbar .full{display:none}
+  .topbar .short{display:inline}
   .head-tel{display:none}
   .hero .wrap{grid-template-columns:1fr;padding-block:28px 44px;gap:22px}
   .hero .copy{gap:14px}
@@ -325,7 +333,7 @@ form{display:grid;grid-template-columns:1fr 1fr;gap:18px 18px;min-width:0;backgr
 
 <div class="topbar">
   <div class="wrap">
-    <span>横浜市青葉区のタイル工事専門店｜戸建て・マンション・店舗</span>
+    <span><span class="full">横浜市青葉区のタイル工事専門店｜戸建て・マンション・店舗</span><span class="short">横浜市青葉区のタイル工事専門店</span></span>
     <span>受付 9:00〜18:00（日曜・祝日休）／現地調査・お見積もり無料</span>
   </div>
 </div>
@@ -390,9 +398,9 @@ form{display:grid;grid-template-columns:1fr 1fr;gap:18px 18px;min-width:0;backgr
   <div class="trust">
     <div class="wrap">
       <div class="item"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M20 4l13 5v9c0 8-5.5 14.5-13 18C12.5 32.5 7 26 7 18V9z"/><path d="M14 20l4 4 8-9"/></svg><div><b>建設業許可</b><small>神奈川県知事 許可（番号は確認後に記載）</small></div></div>
-      <div class="item"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="5" y="9" width="30" height="22" rx="3"/><path d="M5 16h30M12 24h8"/></svg><div><b>請負賠償責任保険 加入</b><small>万一の事故にも補償があります</small></div></div>
+      <div class="item"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="5" y="9" width="30" height="22" rx="3"/><path d="M5 16h30M12 24h8"/></svg><div><b>賠償責任保険 加入</b><small>万一の事故にも補償があります</small></div></div>
       <div class="item"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="20" cy="18" r="10"/><path d="M14 26l-2 10 8-4 8 4-2-10M16 18l3 3 6-6"/></svg><div><b>施工保証 最長5年</b><small>浮き・剥がれは無償で補修します</small></div></div>
-      <div class="item"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M8 32V12l12-6 12 6v20"/><path d="M8 32h24M16 32v-8h8v8"/></svg><div><b>現地調査・見積もり 0円</b><small>お断りいただいても費用はかかりません</small></div></div>
+      <div class="item"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M8 32V12l12-6 12 6v20"/><path d="M8 32h24M16 32v-8h8v8"/></svg><div><b>調査・見積もり 無料</b><small>お断りいただいても費用はかかりません</small></div></div>
     </div>
   </div>
 
@@ -492,7 +500,7 @@ form{display:grid;grid-template-columns:1fr 1fr;gap:18px 18px;min-width:0;backgr
         </ul>
         <div class="access">
           <b>アクセス</b>
-          <span>東急田園都市線 たまプラーザ駅 南口より徒歩12分</span>
+          <span>東急田園都市線 たまプラーザ駅 南口より<span style="white-space:nowrap">徒歩12分</span></span>
           <span>お車の場合は事前にご連絡ください（近隣コインパーキングをご案内します）</span>
           <a href="https://www.google.com/maps/search/?api=1&query=%E7%A5%9E%E5%A5%88%E5%B7%9D%E7%9C%8C%E6%A8%AA%E6%B5%9C%E5%B8%82%E9%9D%92%E8%91%89%E5%8C%BA%E6%96%B0%E7%9F%B3%E5%B7%9D4%E4%B8%81%E7%9B%AE14-36" target="_blank" rel="noopener">Googleマップで地図を開く</a>
         </div>
@@ -530,7 +538,7 @@ form{display:grid;grid-template-columns:1fr 1fr;gap:18px 18px;min-width:0;backgr
         <ul class="promise">
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12l5 5 9-10"/></svg>現地調査・お見積もりは無料です</li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12l5 5 9-10"/></svg>お見積もり後の営業電話はいたしません</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12l5 5 9-10"/></svg>個人情報はお見積もり以外の目的に使用しません</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12l5 5 9-10"/></svg>個人情報はお見積もり以外には使いません</li>
         </ul>
       </div>
       <form class="rv" id="form" novalidate>

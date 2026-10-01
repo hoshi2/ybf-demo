@@ -1,0 +1,698 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex">
+<meta name="description" content="横浜市青葉区のタイル工事専門 株式会社YBF。外壁・浴室・玄関・キッチンのタイル施工、補修・張り替え。現地調査・お見積もり無料。">
+<title>YBF タイル工事</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&display=swap">
+<style>
+/* Layout concept: "目地" (grout lines). A quiet grid of hairlines runs behind every section;
+   photos sit inside it like tiles. Single dark, stone-and-copper world by choice. */
+:root{
+  --bg:#141210;        /* warm charcoal, like wet slate */
+  --bg-2:#1c1915;      /* raised panel */
+  --bg-3:#26221c;      /* hover panel */
+  --fg:#efe8da;        /* glaze white */
+  --fg-2:#b7ad9c;      /* muted text */
+  --line:rgba(239,232,218,.13);
+  --line-strong:rgba(239,232,218,.28);
+  --accent:#c6904f;    /* burnished copper */
+  --accent-deep:#8f6633;
+  --accent-ink:#1a120a;
+  --font-display:"Shippori Mincho","Hiragino Mincho ProN","Yu Mincho",serif;
+  --font-body:"Zen Kaku Gothic New","Hiragino Sans","Yu Gothic",sans-serif;
+  --font-latin:"Cormorant Garamond",Georgia,serif;
+  --wrap:1180px;
+  --gutter:clamp(16px,5vw,56px);
+  color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:var(--bg);color:var(--fg);
+  font-family:var(--font-body);font-size:15.5px;line-height:1.9;letter-spacing:.02em;
+  overflow-x:hidden;
+}
+img{max-width:100%;display:block}
+[hidden]{display:none!important}
+section[id],main[id]{scroll-margin-top:84px}
+a{color:inherit;text-decoration:none}
+h1,h2,h3,h4{font-family:var(--font-display);font-weight:600;margin:0;text-wrap:balance;line-height:1.35}
+p{margin:0}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.wrap{max-width:var(--wrap);margin-inline:auto;padding-inline:var(--gutter)}
+.grid-bg{
+  background-image:
+    linear-gradient(var(--line) 1px,transparent 1px),
+    linear-gradient(90deg,var(--line) 1px,transparent 1px);
+  background-size:140px 140px;
+  background-position:center top;
+}
+
+/* ---------- demo banner ---------- */
+.demo{
+  background:var(--accent);color:var(--accent-ink);font-size:12.5px;letter-spacing:.08em;
+  display:flex;align-items:center;justify-content:center;gap:16px;padding:7px var(--gutter);
+}
+.demo b{font-weight:700}
+.demo button{
+  background:none;border:1px solid rgba(26,18,10,.4);color:inherit;border-radius:999px;
+  font:inherit;padding:1px 10px;cursor:pointer;letter-spacing:.06em;white-space:nowrap;flex:none;
+}
+
+/* ---------- header ---------- */
+.header{
+  position:sticky;top:env(safe-area-inset-top,0px);z-index:50;
+  transition:background .4s ease,border-color .4s ease;
+  border-bottom:1px solid transparent;
+}
+.header.solid{background:rgba(20,18,16,.86);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-color:var(--line)}
+.header .wrap{display:flex;align-items:center;justify-content:space-between;height:76px;gap:24px}
+.brand{display:flex;align-items:center;gap:14px}
+.brand svg{width:34px;height:34px;flex:none}
+.brand .name{font-family:var(--font-latin);font-size:27px;font-weight:600;letter-spacing:.22em;line-height:1}
+.brand .sub{display:block;font-family:var(--font-body);font-size:10.5px;letter-spacing:.3em;color:var(--fg-2);margin-top:4px}
+.nav{display:flex;align-items:center;gap:34px;font-size:13.5px;letter-spacing:.14em}
+.nav a{position:relative;padding-block:6px}
+.nav a::after{content:"";position:absolute;left:0;right:100%;bottom:0;height:1px;background:var(--accent);transition:right .35s ease}
+.nav a:hover::after{right:0}
+.btn{
+  display:inline-flex;align-items:center;gap:12px;
+  padding:13px 26px;border:1px solid var(--accent);color:var(--fg);
+  font-size:13.5px;letter-spacing:.16em;font-weight:500;
+  position:relative;overflow:hidden;isolation:isolate;transition:color .35s ease;
+}
+.btn::before{content:"";position:absolute;inset:0;background:var(--accent);transform:translateX(-101%);transition:transform .45s cubic-bezier(.77,0,.18,1);z-index:-1}
+@media (hover:hover){.btn:hover{color:var(--accent-ink)}.btn:hover::before{transform:translateX(0)}}
+.btn .arrow{width:22px;height:8px}
+.nav .btn{padding:11px 20px}
+.burger{display:none;background:none;border:0;cursor:pointer;padding:8px;color:var(--fg)}
+.burger span{display:block;width:26px;height:1.5px;background:currentColor;margin:6px 0;transition:transform .3s,opacity .3s}
+.mobile-nav{display:none}
+
+/* ---------- hero ---------- */
+.hero{position:relative;min-height:min(88vh,860px);display:flex;align-items:flex-end;overflow:hidden}
+.hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 60%;
+  transform:scale(1.06);animation:heroZoom 9s ease-out forwards}
+@keyframes heroZoom{to{transform:scale(1)}}
+.hero::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(20,18,16,.25) 0%,rgba(20,18,16,.15) 35%,rgba(20,18,16,.92) 100%),
+             linear-gradient(90deg,rgba(20,18,16,.55) 0%,rgba(20,18,16,0) 60%)}
+.hero .wrap{position:relative;z-index:1;width:100%;padding-block:72px 88px}
+.hero .eyebrow{display:flex;align-items:center;gap:16px;font-size:12.5px;letter-spacing:.32em;color:var(--fg-2);margin-bottom:28px}
+.hero .eyebrow::before{content:"";width:48px;height:1px;background:var(--accent)}
+.hero h1{font-size:clamp(34px,5.4vw,66px);font-weight:600;letter-spacing:.06em;line-height:1.28;max-width:16em}
+.hero h1 em{font-style:normal;color:var(--accent)}
+.hero .lead{margin-top:28px;max-width:34em;color:var(--fg-2);font-size:15.5px}
+.hero .cta{margin-top:44px;display:flex;flex-wrap:wrap;gap:16px 28px;align-items:center}
+.hero .cta .tel{font-family:var(--font-latin);font-size:30px;letter-spacing:.08em;line-height:1;display:flex;align-items:baseline;gap:12px}
+.hero .cta .tel small{font-family:var(--font-body);font-size:11.5px;letter-spacing:.2em;color:var(--fg-2)}
+.hero-rise{animation:rise 1.1s cubic-bezier(.2,.7,.2,1) both}
+.hero-rise.d1{animation-delay:.12s}.hero-rise.d2{animation-delay:.26s}.hero-rise.d3{animation-delay:.42s}
+@keyframes rise{from{opacity:.001;transform:translateY(22px)}to{opacity:1;transform:none}}
+.scroll-hint{position:absolute;right:var(--gutter);bottom:34px;z-index:1;display:flex;flex-direction:column;align-items:center;gap:10px;
+  font-family:var(--font-latin);font-size:12px;letter-spacing:.3em;color:var(--fg-2);writing-mode:vertical-rl}
+.scroll-hint::after{content:"";width:1px;height:56px;background:linear-gradient(var(--accent),transparent);animation:drop 2.2s ease-in-out infinite}
+@keyframes drop{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+
+/* ---------- stat strip ---------- */
+.stats{border-block:1px solid var(--line);background:var(--bg-2)}
+.stats .wrap{display:grid;grid-template-columns:repeat(4,1fr)}
+.stat{padding:30px 24px;border-left:1px solid var(--line);display:flex;flex-direction:column;gap:6px}
+.stat:first-child{border-left:0;padding-left:0}
+.stat .k{font-size:11.5px;letter-spacing:.24em;color:var(--fg-2)}
+.stat .v{font-family:var(--font-latin);font-size:40px;line-height:1;letter-spacing:.04em;font-variant-numeric:tabular-nums}
+.stat .v small{font-family:var(--font-display);font-size:16px;margin-left:6px;letter-spacing:.1em}
+
+/* ---------- sections ---------- */
+.section{padding-block:clamp(72px,10vw,132px)}
+.sec-head{display:grid;grid-template-columns:auto 1fr;gap:28px 48px;align-items:end;margin-bottom:clamp(40px,6vw,72px)}
+.sec-head .en{font-family:var(--font-latin);font-size:clamp(54px,8vw,104px);line-height:.85;letter-spacing:.02em;color:transparent;
+  -webkit-text-stroke:1px var(--line-strong);font-weight:500}
+.sec-head .ja{display:flex;flex-direction:column;gap:12px;padding-bottom:10px}
+.sec-head .ja .label{font-size:12.5px;letter-spacing:.3em;color:var(--accent)}
+.sec-head h2{font-size:clamp(24px,3vw,36px);letter-spacing:.08em}
+.sec-head .desc{color:var(--fg-2);max-width:44em;font-size:15px}
+
+/* ---------- services ---------- */
+.services{background:var(--bg)}
+.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--line)}
+.svc{padding:40px 34px 44px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);
+  display:flex;flex-direction:column;gap:18px;position:relative;transition:background .4s ease;min-width:0}
+.svc:nth-child(3n){border-right:0}
+.svc:nth-last-child(-n+3){border-bottom:0}
+@media (hover:hover){.svc:hover{background:var(--bg-2)}}
+.svc .ico{width:44px;height:44px;color:var(--accent)}
+.svc h3{font-size:21px;letter-spacing:.08em}
+.svc h3 span{display:block;font-family:var(--font-latin);font-size:12px;letter-spacing:.24em;color:var(--fg-2);margin-top:6px;font-weight:500}
+.svc p{color:var(--fg-2);font-size:14.5px}
+.svc .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:auto;padding-top:8px}
+.svc .tags span{font-size:11.5px;letter-spacing:.1em;border:1px solid var(--line-strong);padding:3px 10px;color:var(--fg-2)}
+
+/* ---------- works ---------- */
+.works{background:var(--bg-2);border-block:1px solid var(--line)}
+.filters{display:flex;flex-wrap:wrap;gap:8px 26px;margin-bottom:36px;font-size:13px;letter-spacing:.16em}
+.filters button{background:none;border:0;color:var(--fg-2);font:inherit;letter-spacing:inherit;cursor:pointer;padding:10px 0;position:relative;-webkit-tap-highlight-color:transparent}
+.filters button::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--accent);transform:scaleX(0);transition:transform .3s;transform-origin:left}
+.filters button[aria-pressed="true"]{color:var(--fg)}
+.filters button[aria-pressed="true"]::after{transform:scaleX(1)}
+.work-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:4px}
+.work{position:relative;aspect-ratio:4/3;overflow:hidden;cursor:pointer;background:var(--bg-3);border:0;padding:0;margin:0;text-align:left;color:inherit;font:inherit;max-width:100%;-webkit-appearance:none;appearance:none;display:block;width:100%;-webkit-tap-highlight-color:transparent}
+.work:nth-child(1){grid-column:span 2;aspect-ratio:8/4.5}
+.work img{width:100%;height:100%;object-fit:cover;transition:transform 1.1s cubic-bezier(.2,.7,.2,1),filter .6s}
+@media (hover:hover){.work:hover img{transform:scale(1.05)}}
+.work .cap{position:absolute;inset:auto 0 0 0;padding:22px 24px;
+  background:linear-gradient(180deg,transparent,rgba(20,18,16,.88));display:flex;flex-direction:column;gap:4px}
+.work .cat{font-size:11px;letter-spacing:.26em;color:var(--accent)}
+.work .ttl{font-family:var(--font-display);font-size:18px;letter-spacing:.06em;line-height:1.4}
+.work .loc{font-size:12px;color:var(--fg-2);letter-spacing:.1em}
+.work.hidden{display:none}
+.works-more{margin-top:40px;display:flex;justify-content:flex-end}
+
+/* ---------- lightbox ---------- */
+.lb{position:fixed;inset:0;z-index:100;background:rgba(10,9,8,.92);display:none;align-items:center;justify-content:center;padding:clamp(16px,4vw,48px)}
+.lb.open{display:flex}
+.lb-inner{display:grid;grid-template-columns:1.4fr 1fr;max-width:1100px;width:100%;max-height:100%;background:var(--bg-2);border:1px solid var(--line);overflow:auto}
+.lb-inner img{width:100%;height:100%;object-fit:cover;min-height:260px}
+.lb-body{padding:40px 38px;display:flex;flex-direction:column;gap:18px;min-width:0}
+.lb-body .cat{font-size:11.5px;letter-spacing:.26em;color:var(--accent)}
+.lb-body h3{font-size:26px;letter-spacing:.06em}
+.lb-body dl{display:grid;grid-template-columns:auto 1fr;gap:8px 20px;font-size:13.5px;margin:0;border-top:1px solid var(--line);padding-top:18px}
+.lb-body dt{color:var(--fg-2);letter-spacing:.1em}
+.lb-body dd{margin:0}
+.lb-body p{color:var(--fg-2);font-size:14.5px}
+.lb-close{position:absolute;top:18px;right:18px;background:none;border:1px solid var(--line-strong);color:var(--fg);width:44px;height:44px;border-radius:50%;cursor:pointer;font-size:22px;line-height:1}
+
+/* ---------- craft ---------- */
+.craft .wrap{display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,6vw,96px);align-items:center}
+.craft .photo{position:relative}
+.craft .photo img{aspect-ratio:4/5;object-fit:cover;width:100%}
+.craft .photo::before{content:"";position:absolute;inset:-18px auto auto -18px;width:60%;height:60%;border:1px solid var(--accent);z-index:-1;opacity:.7}
+.craft .photo .badge{position:absolute;right:-14px;bottom:28px;background:var(--bg);border:1px solid var(--line-strong);padding:14px 20px;font-family:var(--font-latin);font-size:13px;letter-spacing:.2em}
+.craft .copy{display:flex;flex-direction:column;gap:26px;min-width:0}
+.craft h2{font-size:clamp(26px,3vw,38px);letter-spacing:.08em}
+.craft .copy>p{color:var(--fg-2)}
+.craft ul{list-style:none;margin:0;padding:0;display:grid;gap:0;border-top:1px solid var(--line)}
+.craft li{display:grid;grid-template-columns:auto 1fr;gap:22px;padding:20px 0;border-bottom:1px solid var(--line);align-items:start}
+.craft li .n{font-family:var(--font-latin);font-size:13px;letter-spacing:.2em;color:var(--accent);padding-top:5px}
+.craft li b{display:block;font-family:var(--font-display);font-weight:600;font-size:17px;letter-spacing:.06em;margin-bottom:4px}
+.craft li span{color:var(--fg-2);font-size:14px}
+
+/* ---------- process ---------- */
+.process{background:var(--bg-2);border-block:1px solid var(--line)}
+.steps{display:grid;grid-template-columns:repeat(5,1fr);gap:0;position:relative}
+.steps::before{content:"";position:absolute;left:0;right:0;top:27px;height:1px;background:var(--line-strong)}
+.step{padding:0 26px 0 0;display:flex;flex-direction:column;gap:16px;position:relative;min-width:0}
+.step .dot{width:55px;height:55px;border-radius:50%;border:1px solid var(--accent);background:var(--bg-2);display:grid;place-items:center;
+  font-family:var(--font-latin);font-size:17px;letter-spacing:.05em;color:var(--accent);position:relative;z-index:1}
+.step .body{display:flex;flex-direction:column;gap:10px;min-width:0}
+.step h3{font-size:17.5px;letter-spacing:.06em}
+.step p{color:var(--fg-2);font-size:13.5px}
+.step .time{font-size:11.5px;letter-spacing:.16em;color:var(--accent)}
+
+/* ---------- area + company ---------- */
+.about .wrap{display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,6vw,96px)}
+.about .col{display:flex;flex-direction:column;gap:28px;min-width:0}
+.about h2{font-size:clamp(22px,2.4vw,28px);letter-spacing:.1em;display:flex;align-items:center;gap:16px}
+.about h2::after{content:"";flex:1;height:1px;background:var(--line)}
+.ctable{width:100%;border-collapse:collapse;font-size:14.5px}
+.ctable th,.ctable td{padding:14px 0;border-bottom:1px solid var(--line);vertical-align:top;text-align:left}
+.ctable th{width:9em;font-weight:500;color:var(--fg-2);letter-spacing:.14em;font-size:13px;padding-right:16px}
+.area-map{border:1px solid var(--line);padding:28px;background:var(--bg-2);display:grid;grid-template-columns:auto 1fr;gap:24px;align-items:center}
+.area-map svg{width:120px;height:120px}
+.area-map .main{font-family:var(--font-display);font-size:20px;letter-spacing:.08em}
+.area-map .list{color:var(--fg-2);font-size:13.5px;margin-top:6px}
+.about .note{color:var(--fg-2);font-size:14px}
+
+/* ---------- contact ---------- */
+.contact{position:relative;overflow:hidden;border-top:1px solid var(--line)}
+.contact .bgimg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.16;filter:grayscale(1)}
+.contact::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,var(--bg) 0%,rgba(20,18,16,.75) 50%,var(--bg) 100%)}
+.contact .wrap{position:relative;z-index:1;display:grid;grid-template-columns:1fr 1.15fr;gap:clamp(40px,6vw,96px)}
+.contact .intro{display:flex;flex-direction:column;gap:26px;min-width:0}
+.contact h2{font-size:clamp(26px,3vw,38px);letter-spacing:.08em}
+.contact .intro p{color:var(--fg-2)}
+.telbox{border:1px solid var(--line-strong);padding:26px 28px;display:flex;flex-direction:column;gap:6px}
+.telbox .k{font-size:11.5px;letter-spacing:.26em;color:var(--accent)}
+.telbox .v{font-family:var(--font-latin);font-size:38px;letter-spacing:.06em;line-height:1.1}
+.telbox .h{font-size:12.5px;color:var(--fg-2);letter-spacing:.1em}
+form{display:grid;grid-template-columns:1fr 1fr;gap:22px 20px;min-width:0}
+.field{display:flex;flex-direction:column;gap:8px;min-width:0}
+.field.full{grid-column:1/-1}
+.field label{font-size:12.5px;letter-spacing:.18em;color:var(--fg-2)}
+.field label i{font-style:normal;color:var(--accent);margin-left:6px;font-size:11px}
+.field input,.field select,.field textarea{
+  width:100%;background:rgba(239,232,218,.04);border:1px solid var(--line-strong);color:var(--fg);
+  font:inherit;font-size:16px;padding:13px 16px;border-radius:0;transition:border-color .3s,background .3s;min-width:0}
+.field input:focus,.field select:focus,.field textarea:focus{outline:0;border-color:var(--accent);background:rgba(239,232,218,.07)}
+.field textarea{min-height:140px;resize:vertical}
+.field select{appearance:none;background-image:linear-gradient(45deg,transparent 50%,var(--fg-2) 50%),linear-gradient(135deg,var(--fg-2) 50%,transparent 50%);
+  background-position:calc(100% - 22px) 50%,calc(100% - 16px) 50%;background-size:6px 6px;background-repeat:no-repeat}
+.form-foot{grid-column:1/-1;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:18px}
+.form-foot small{color:var(--fg-2);font-size:12px;letter-spacing:.06em}
+.btn.solid{background:var(--accent);color:var(--accent-ink);border-color:var(--accent);cursor:pointer;font-family:inherit}
+.btn.solid::before{background:var(--fg)}
+.sent{grid-column:1/-1;border:1px solid var(--accent);padding:34px;display:none;flex-direction:column;gap:10px;text-align:center}
+.sent.show{display:flex}
+.sent b{font-family:var(--font-display);font-size:22px;letter-spacing:.08em}
+.sent span{color:var(--fg-2);font-size:14px}
+
+/* ---------- footer ---------- */
+.footer{border-top:1px solid var(--line);padding-block:40px;font-size:12.5px;color:var(--fg-2);letter-spacing:.1em}
+.footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:18px}
+.footer .brand .name{font-size:22px}
+.footer nav{display:flex;flex-wrap:wrap;gap:10px 24px}
+.footer .copy{font-family:var(--font-latin);letter-spacing:.14em;font-size:13px}
+
+/* ---------- reveal ---------- */
+.rv{opacity:1;transform:none;transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1)}
+.js .rv:not(.in){opacity:0;transform:translateY(26px)}
+
+/* ---------- responsive ---------- */
+@media (max-width:980px){
+  .nav{display:none}
+  .burger{display:block}
+  .mobile-nav{display:none;position:fixed;inset:0;z-index:60;background:rgba(20,18,16,.97);padding:calc(env(safe-area-inset-top,0px) + 90px) var(--gutter) 40px;
+    flex-direction:column;gap:6px;font-family:var(--font-display);font-size:26px;letter-spacing:.14em}
+  .mobile-nav.open{display:flex}
+  .mobile-nav a{padding:14px 0;border-bottom:1px solid var(--line)}
+  .mobile-nav .btn{margin-top:24px;font-family:var(--font-body);font-size:14px;justify-content:center}
+  .mobile-nav .close{position:absolute;top:calc(env(safe-area-inset-top,0px) + 20px);right:var(--gutter);background:none;border:1px solid var(--line-strong);color:var(--fg);width:44px;height:44px;border-radius:50%;font-size:22px;cursor:pointer}
+  .stats .wrap{grid-template-columns:1fr 1fr}
+  .stat{padding:22px 18px}
+  .stat:nth-child(odd){border-left:0;padding-left:0}
+  .stat:nth-child(-n+2){border-bottom:1px solid var(--line)}
+  .svc-grid{grid-template-columns:1fr 1fr}
+  .svc:nth-child(3n){border-right:1px solid var(--line)}
+  .svc:nth-child(2n){border-right:0}
+  .svc:nth-last-child(-n+3){border-bottom:1px solid var(--line)}
+  .svc:nth-last-child(-n+2){border-bottom:0}
+  .work-grid{grid-template-columns:1fr 1fr}
+  .work:nth-child(1){grid-column:span 2;aspect-ratio:16/9}
+  .craft .wrap,.about .wrap,.contact .wrap{grid-template-columns:1fr}
+  .steps{grid-template-columns:1fr;gap:28px}
+  .steps::before{left:27px;right:auto;top:0;bottom:0;width:1px;height:auto}
+  .step{flex-direction:row;gap:22px;padding:0}
+  .step .dot{flex:none}
+  .step .body{display:flex;flex-direction:column;gap:8px;min-width:0}
+  .lb-inner{grid-template-columns:1fr}
+  .lb-inner img{max-height:40vh}
+}
+@media (max-width:560px){
+  .hero{min-height:auto}
+  .hero .wrap{padding-block:120px 72px}
+  .hero .cta .tel{font-size:26px}
+  .scroll-hint{display:none}
+  .sec-head{grid-template-columns:1fr;gap:16px}
+  .svc-grid{grid-template-columns:1fr}
+  .svc{border-right:0 !important;border-bottom:1px solid var(--line) !important}
+  .svc:last-child{border-bottom:0 !important}
+  .work-grid{grid-template-columns:1fr}
+  .work:nth-child(1){grid-column:auto;aspect-ratio:4/3}
+  form{grid-template-columns:1fr}
+  .area-map{grid-template-columns:1fr}
+  .craft .photo .badge{right:0}
+  .demo{font-size:11.5px;gap:10px;text-align:left;line-height:1.6}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none !important;transition:none !important;scroll-behavior:auto !important}
+  .js .rv:not(.in){opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+
+<div class="demo" id="demo">
+  <span><b>デモ版</b>　写真・数値・一部の文章は仮のものです。実際の施工写真と会社情報に差し替えて公開します。</span>
+  <button type="button" id="demoClose" aria-label="閉じる">閉じる</button>
+</div>
+
+<header class="header" id="header">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="株式会社YBF トップへ">
+      <svg viewBox="0 0 34 34" aria-hidden="true"><g fill="none" stroke="#efe8da" stroke-width="1.2"><rect x="1" y="1" width="9.5" height="9.5"/><rect x="12.25" y="1" width="9.5" height="9.5"/><rect x="23.5" y="1" width="9.5" height="9.5"/><rect x="1" y="12.25" width="9.5" height="9.5"/><rect x="23.5" y="12.25" width="9.5" height="9.5"/><rect x="1" y="23.5" width="9.5" height="9.5"/><rect x="12.25" y="23.5" width="9.5" height="9.5"/><rect x="23.5" y="23.5" width="9.5" height="9.5"/></g><rect x="12.25" y="12.25" width="9.5" height="9.5" fill="#c6904f"/></svg>
+      <span><span class="name">YBF</span><span class="sub">株式会社YBF　タイル工事</span></span>
+    </a>
+    <nav class="nav" aria-label="主要">
+      <a href="#works">施工事例</a>
+      <a href="#services">事業内容</a>
+      <a href="#craft">こだわり</a>
+      <a href="#flow">ご依頼の流れ</a>
+      <a href="#company">会社概要</a>
+      <a class="btn" href="#contact">無料見積もり<svg class="arrow" viewBox="0 0 22 8" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M0 7h20M15 1l6 6"/></svg></a>
+    </nav>
+    <button class="burger" id="burger" aria-label="メニューを開く" aria-expanded="false"><span></span><span></span></button>
+  </div>
+</header>
+<nav class="mobile-nav" id="mobileNav" aria-label="モバイル">
+  <button class="close" id="navClose" aria-label="閉じる">×</button>
+  <a href="#works">施工事例</a>
+  <a href="#services">事業内容</a>
+  <a href="#craft">こだわり</a>
+  <a href="#flow">ご依頼の流れ</a>
+  <a href="#company">会社概要</a>
+  <a class="btn" href="#contact">無料見積もりを相談する</a>
+</nav>
+
+<main id="top">
+  <section class="hero">
+    <img src="../img/hero.jpg" alt="濃いグレーの石目タイルで仕上げた浴室" width="2000" height="1335" fetchpriority="high">
+    <div class="wrap">
+      <p class="eyebrow hero-rise">横浜・青葉区｜タイル工事専門</p>
+      <h1 class="hero-rise d1">一枚の精度が、<br>空間の<em>品格</em>になる。</h1>
+      <p class="lead hero-rise d2">外壁から浴室、玄関、キッチンまで。株式会社YBFは、下地づくりから目地の仕上げまでを自社の職人が一貫して手がけるタイル工事の専門会社です。戸建て・マンション・店舗、新築もリフォームも承ります。</p>
+      <div class="cta hero-rise d3">
+        <a class="btn" href="#contact">無料で見積もりを相談する<svg class="arrow" viewBox="0 0 22 8" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M0 7h20M15 1l6 6"/></svg></a>
+        <div class="tel"><span>045-000-0000</span><small>9:00–18:00　日祝休</small></div>
+      </div>
+    </div>
+    <div class="scroll-hint" aria-hidden="true">SCROLL</div>
+  </section>
+
+  <div class="stats">
+    <div class="wrap">
+      <div class="stat"><span class="k">施工実績</span><span class="v">320<small>件</small></span></div>
+      <div class="stat"><span class="k">職人経験</span><span class="v">18<small>年</small></span></div>
+      <div class="stat"><span class="k">対応エリア</span><span class="v">1<small>都1県</small></span></div>
+      <div class="stat"><span class="k">見積もり・現地調査</span><span class="v">0<small>円</small></span></div>
+    </div>
+  </div>
+
+  <section class="section services grid-bg" id="services">
+    <div class="wrap">
+      <div class="sec-head rv">
+        <div class="en" aria-hidden="true">Services</div>
+        <div class="ja">
+          <span class="label">事業内容</span>
+          <h2>タイルのことなら、場所を問わず。</h2>
+          <p class="desc">小さな補修から建物一棟の外装まで、同じ精度でお応えします。磁器質・せっ器質・陶器質、モザイクや大判タイルまで素材を選びません。</p>
+        </div>
+      </div>
+      <div class="svc-grid rv">
+        <article class="svc">
+          <svg class="ico" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M6 38V12l16-8 16 8v26"/><path d="M6 20h32M6 29h32M22 12v26M14 20v9M30 29v9"/></svg>
+          <h3>外壁タイル<span>EXTERIOR</span></h3>
+          <p>新築の外装から、浮き・剥落の補修、全面張り替えまで。打診検査で浮きを特定し、必要な範囲だけを的確に直します。</p>
+          <div class="tags"><span>戸建て</span><span>マンション</span><span>打診検査</span></div>
+        </article>
+        <article class="svc">
+          <svg class="ico" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M6 26h32v6a6 6 0 0 1-6 6H12a6 6 0 0 1-6-6z"/><path d="M10 26V12a4 4 0 0 1 8 0"/><path d="M14 16h8"/><path d="M12 38v3M32 38v3"/></svg>
+          <h3>浴室・水まわり<span>BATHROOM</span></h3>
+          <p>湿気と温度差の大きい場所こそ、下地の防水と目地の仕上げが命。長く清潔に保てる浴室・洗面・トイレのタイル施工です。</p>
+          <div class="tags"><span>在来浴室</span><span>防水</span><span>抗菌目地</span></div>
+        </article>
+        <article class="svc">
+          <svg class="ico" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M4 40l12-8 12 8 12-8"/><path d="M4 32l12-8 12 8 12-8"/><path d="M4 24l12-8 12 8 12-8"/><path d="M16 16V6l12 8"/></svg>
+          <h3>玄関・エントランス<span>ENTRANCE</span></h3>
+          <p>家の第一印象を決める場所。滑りにくさと意匠性を両立させ、ポーチ・階段・アプローチまで一体で美しく仕上げます。</p>
+          <div class="tags"><span>滑り止め</span><span>階段</span><span>アプローチ</span></div>
+        </article>
+        <article class="svc">
+          <svg class="ico" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="4" y="22" width="36" height="14"/><path d="M4 22l6-10h24l6 10"/><path d="M14 36v4M30 36v4M18 12v10M26 12v10"/></svg>
+          <h3>キッチン<span>KITCHEN</span></h3>
+          <p>コンロまわりのバックスプラッシュやカウンター。油や熱に強く、掃除がしやすいタイルを、空間の色に合わせてご提案します。</p>
+          <div class="tags"><span>サブウェイ</span><span>モザイク</span><span>耐熱</span></div>
+        </article>
+        <article class="svc">
+          <svg class="ico" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M4 30l18-10 18 10-18 10z"/><path d="M4 30v4l18 10 18-10v-4"/><path d="M22 20V6"/><path d="M14 10l8-4 8 4"/></svg>
+          <h3>床・テラス<span>FLOOR &amp; TERRACE</span></h3>
+          <p>リビングの大判タイルから、屋外テラスや駐車場の床まで。水勾配と伸縮目地を正しく設計し、割れや浮きを防ぎます。</p>
+          <div class="tags"><span>大判タイル</span><span>屋外</span><span>床暖房対応</span></div>
+        </article>
+        <article class="svc">
+          <svg class="ico" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="4" y="4" width="16" height="16"/><rect x="24" y="4" width="16" height="16"/><rect x="4" y="24" width="16" height="16"/><path d="M24 40l16-16M24 24l16 16" stroke-dasharray="2 3"/></svg>
+          <h3>補修・張り替え<span>REPAIR</span></h3>
+          <p>1枚のひび割れ、目地の欠け、浮きの再接着。「これだけ直したい」にも対応します。廃番タイルの近似色探しもお任せください。</p>
+          <div class="tags"><span>1枚から</span><span>目地打ち替え</span><span>近似色</span></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section works" id="works">
+    <div class="wrap">
+      <div class="sec-head rv">
+        <div class="en" aria-hidden="true">Works</div>
+        <div class="ja">
+          <span class="label">施工事例</span>
+          <h2>仕上がりが、いちばんの説明です。</h2>
+          <p class="desc">実際の現場から。写真をクリックすると、使用タイルや工期などの詳細をご覧いただけます。</p>
+        </div>
+      </div>
+      <div class="filters rv" role="group" aria-label="事例の絞り込み">
+        <button type="button" aria-pressed="true" data-f="all">すべて</button>
+        <button type="button" aria-pressed="false" data-f="bath">浴室・水まわり</button>
+        <button type="button" aria-pressed="false" data-f="ext">外壁</button>
+        <button type="button" aria-pressed="false" data-f="ent">玄関・共用部</button>
+        <button type="button" aria-pressed="false" data-f="kit">キッチン</button>
+      </div>
+      <div class="work-grid rv" id="workGrid">
+        <button class="work" data-f="bath" data-cat="浴室・水まわり" data-title="石目タイルで包む、ホテルのような浴室" data-loc="横浜市青葉区｜戸建て" data-tile="600角 石目調磁器質タイル／ボーダーモザイク" data-term="8日間" data-type="在来浴室 全面リフォーム" data-desc="ユニットバスをやめ、在来工法でつくり直した浴室。壁の大判タイルの割付をあらかじめ図面で詰め、浴槽まわりに細いボーダーを一本通すことで、重たくならない重厚感に仕上げました。">
+          <img src="../img/hero.jpg" alt="濃いグレーの石目タイルの浴室" loading="lazy">
+          <span class="cap"><span class="cat">浴室・水まわり</span><span class="ttl">石目タイルで包む、ホテルのような浴室</span><span class="loc">横浜市青葉区｜戸建て</span></span>
+        </button>
+        <button class="work" data-f="bath" data-cat="浴室・水まわり" data-title="白いサブウェイタイルと六角モザイクのシャワールーム" data-loc="川崎市宮前区｜戸建て" data-tile="75×150 サブウェイタイル／六角モザイク（床）" data-term="5日間" data-type="浴室リフォーム" data-desc="明るく清潔感のあるシャワールーム。目線の高さにグレーのボーダーを入れて、白一色の単調さを抑えています。床は滑りにくい小さな六角モザイクを採用。">
+          <img src="../img/case-bath.jpg" alt="白いサブウェイタイルのシャワールーム" loading="lazy">
+          <span class="cap"><span class="cat">浴室・水まわり</span><span class="ttl">白いサブウェイタイルと六角モザイクのシャワールーム</span><span class="loc">川崎市宮前区｜戸建て</span></span>
+        </button>
+        <button class="work" data-f="ent" data-cat="玄関・共用部" data-title="光を受ける、白磁の階段ホール" data-loc="横浜市港北区｜マンション共用部" data-tile="100角 白磁器質タイル／御影石（段鼻）" data-term="12日間" data-type="共用部 改修" data-desc="築30年のマンションの階段ホール。目地を細く濃い色にして、タイルの格子をそのまま意匠にしました。段鼻は滑り止め加工の御影石に交換しています。">
+          <img src="../img/case-stairs.jpg" alt="白いタイル壁の階段ホール" loading="lazy">
+          <span class="cap"><span class="cat">玄関・共用部</span><span class="ttl">光を受ける、白磁の階段ホール</span><span class="loc">横浜市港北区｜マンション共用部</span></span>
+        </button>
+        <button class="work" data-f="ext" data-cat="外壁" data-title="石積み調ボーダータイルの外壁" data-loc="横浜市都筑区｜戸建て 新築" data-tile="石積み調 せっ器質ボーダータイル" data-term="14日間" data-type="外壁 新規施工" data-desc="長さの違うボーダーを乱張りにし、本物の石積みのような陰影を出しました。出隅は役物タイルで納め、角が欠けにくい仕上がりに。">
+          <img src="../img/case-exterior.jpg" alt="石積み調のボーダータイル外壁" loading="lazy">
+          <span class="cap"><span class="cat">外壁</span><span class="ttl">石積み調ボーダータイルの外壁</span><span class="loc">横浜市都筑区｜戸建て 新築</span></span>
+        </button>
+        <button class="work" data-f="kit" data-cat="キッチン" data-title="立体に見える、幾何学タイルのキッチン壁" data-loc="東京都世田谷区｜戸建て" data-tile="ひし形 立体柄 陶器質タイル（白）" data-term="2日間" data-type="キッチン バックスプラッシュ" data-desc="ひし形のタイルを三方向に組み、キューブが浮き上がって見える伝統柄「タンブリングブロック」に。柄が狂わないよう、芯出しからミリ単位で張り進めました。">
+          <img src="../img/case-geo.jpg" alt="白い幾何学タイルの壁" loading="lazy">
+          <span class="cap"><span class="cat">キッチン</span><span class="ttl">立体に見える、幾何学タイルのキッチン壁</span><span class="loc">東京都世田谷区｜戸建て</span></span>
+        </button>
+        <button class="work" data-f="ent" data-cat="玄関・共用部" data-title="装飾タイルに包まれたレストランの通路" data-loc="横浜市中区｜店舗" data-tile="装飾プリントタイル／市松 床タイル" data-term="10日間" data-type="店舗 内装" data-desc="アーチ天井まで装飾タイルで覆った、店舗のエントランス通路。曲面への割付は現場で一枚ずつ型を取り、柄がつながるよう調整しています。">
+          <img src="../img/case-pattern.jpg" alt="装飾タイルに覆われた通路" loading="lazy">
+          <span class="cap"><span class="cat">玄関・共用部</span><span class="ttl">装飾タイルに包まれたレストランの通路</span><span class="loc">横浜市中区｜店舗</span></span>
+        </button>
+        <button class="work" data-f="ext" data-cat="外壁" data-title="中庭の壁泉、青磁色のモザイク" data-loc="鎌倉市｜戸建て" data-tile="45角 青磁色モザイクタイル" data-term="6日間" data-type="外構・造作" data-desc="左官で立ち上げた壁泉に、青磁色のモザイクを全面に。水に触れる部分は吸水率の低い磁器質を選び、目地は防カビタイプで仕上げました。">
+          <img src="../img/case-fountain.jpg" alt="青磁色のモザイクタイルの壁泉" loading="lazy">
+          <span class="cap"><span class="cat">外壁</span><span class="ttl">中庭の壁泉、青磁色のモザイク</span><span class="loc">鎌倉市｜戸建て</span></span>
+        </button>
+      </div>
+      <div class="works-more rv"><a class="btn" href="#contact">似た工事の相談をする<svg class="arrow" viewBox="0 0 22 8" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M0 7h20M15 1l6 6"/></svg></a></div>
+    </div>
+  </section>
+
+  <section class="section craft" id="craft">
+    <div class="wrap">
+      <div class="photo rv">
+        <img src="../img/craft.jpg" alt="キッチンの壁にモザイクタイルを当てて確認する職人の手" loading="lazy">
+        <div class="badge">CRAFTSMANSHIP</div>
+      </div>
+      <div class="copy rv">
+        <span class="label" style="font-size:12.5px;letter-spacing:.3em;color:var(--accent)">こだわり</span>
+        <h2>見えない下地に、<br>いちばん時間をかける。</h2>
+        <p>タイルの寿命を決めるのは、表に見えない下地と接着層です。YBFは「張ってから」ではなく「張る前」にこだわります。</p>
+        <ul>
+          <li><span class="n">01</span><div><b>下地の精度を最初に整える</b><span>不陸（凹凸）をモルタルで調整し、タイルが面で密着する平滑な下地をつくります。ここを省くと数年後の浮きにつながります。</span></div></li>
+          <li><span class="n">02</span><div><b>割付図を描いてから張る</b><span>半端なカットが目立つ場所に来ないよう、現場ごとに割付図を作成。端部や役物まで含めて、仕上がりを事前にご確認いただけます。</span></div></li>
+          <li><span class="n">03</span><div><b>工法を場所で選ぶ</b><span>外壁は改良圧着張り、浴室は防水下地＋弾性接着など。同じ「張る」でも、場所と素材に合わせて最適な工法を使い分けます。</span></div></li>
+          <li><span class="n">04</span><div><b>引き渡し前に全面打診検査</b><span>打診棒で一枚ずつ音を確かめ、浮きがないことを確認してからお引き渡し。施工後の保証書もお渡しします。</span></div></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section process" id="flow">
+    <div class="wrap">
+      <div class="sec-head rv">
+        <div class="en" aria-hidden="true">Flow</div>
+        <div class="ja">
+          <span class="label">ご依頼の流れ</span>
+          <h2>お問い合わせから、お引き渡しまで。</h2>
+          <p class="desc">現地調査とお見積もりは無料です。お見積もり後にお断りいただいても、費用は一切かかりません。</p>
+        </div>
+      </div>
+      <div class="steps rv">
+        <div class="step"><div class="dot">1</div><div class="body"><h3>お問い合わせ</h3><p>フォームまたはお電話で。写真を送っていただけると、おおよその費用感をすぐにお伝えできます。</p><span class="time">当日〜翌営業日に返信</span></div></div>
+        <div class="step"><div class="dot">2</div><div class="body"><h3>現地調査・採寸</h3><p>職人が直接お伺いし、下地の状態と寸法を確認。外壁は打診で浮きの範囲を調べます。</p><span class="time">所要 30分〜1時間</span></div></div>
+        <div class="step"><div class="dot">3</div><div class="body"><h3>お見積もり・タイル選定</h3><p>内訳の分かるお見積もりと割付図をご提示。サンプルを実際に当てながらタイルを選べます。</p><span class="time">調査から3営業日</span></div></div>
+        <div class="step"><div class="dot">4</div><div class="body"><h3>施工</h3><p>養生・下地調整・張り付け・目地詰め・清掃まで自社職人が担当。近隣へのご挨拶も行います。</p><span class="time">規模により1日〜</span></div></div>
+        <div class="step"><div class="dot">5</div><div class="body"><h3>検査・お引き渡し</h3><p>全面打診検査の後、お客様と一緒に仕上がりを確認。保証書をお渡しし、アフター対応も承ります。</p><span class="time">施工保証付き</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section about grid-bg" id="company">
+    <div class="wrap">
+      <div class="col rv">
+        <h2>対応エリア</h2>
+        <div class="area-map">
+          <svg viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="56" fill="none" stroke="#efe8da" stroke-opacity=".2"/><circle cx="60" cy="60" r="38" fill="none" stroke="#efe8da" stroke-opacity=".3" stroke-dasharray="3 4"/><circle cx="60" cy="60" r="18" fill="#c6904f" fill-opacity=".18" stroke="#c6904f"/><circle cx="60" cy="60" r="3.5" fill="#c6904f"/><text x="60" y="108" text-anchor="middle" font-size="9" fill="#b7ad9c" letter-spacing="2">YOKOHAMA</text></svg>
+          <div>
+            <div class="main">横浜市・川崎市を中心に、神奈川県全域と東京都</div>
+            <p class="list">青葉区・都筑区・港北区・緑区・宮前区・高津区・多摩区・町田市・世田谷区 ほか。たまプラーザの事務所から1時間圏内は、即日の現地調査にも対応します。</p>
+          </div>
+        </div>
+        <p class="note">上記以外のエリアも、工事内容によってはお受けしています。まずはご相談ください。</p>
+      </div>
+      <div class="col rv">
+        <h2>会社概要</h2>
+        <table class="ctable">
+          <tr><th>会社名</th><td>株式会社YBF</td></tr>
+          <tr><th>所在地</th><td>〒225-0003<br>神奈川県横浜市青葉区新石川4丁目14-36 メゾンⅠ-303<br><span style="color:var(--fg-2);font-size:13px">東急田園都市線 たまプラーザ駅 南口より徒歩12分</span></td></tr>
+          <tr><th>設立</th><td>2023年7月</td></tr>
+          <tr><th>代表者</th><td>代表取締役　—（確認後に記載）</td></tr>
+          <tr><th>事業内容</th><td>タイル工事一式（外装・内装・床）、タイル補修・張り替え、石材工事、防水下地工事</td></tr>
+          <tr><th>対応時間</th><td>9:00〜18:00（日曜・祝日休）</td></tr>
+          <tr><th>電話</th><td>045-000-0000</td></tr>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="section contact" id="contact">
+    <img class="bgimg" src="../img/texture-shadow.jpg" alt="" aria-hidden="true" loading="lazy">
+    <div class="wrap">
+      <div class="intro rv">
+        <span class="label" style="font-size:12.5px;letter-spacing:.3em;color:var(--accent)">お問い合わせ</span>
+        <h2>まずは、<br>写真一枚から。</h2>
+        <p>「この壁、直せますか」「こんな雰囲気にしたい」。そんな段階で大丈夫です。現地調査・お見積もりは無料、しつこい営業はいたしません。</p>
+        <div class="telbox">
+          <span class="k">お電話でのご相談</span>
+          <span class="v">045-000-0000</span>
+          <span class="h">9:00〜18:00（日曜・祝日休）／現場作業中は折り返しご連絡します</span>
+        </div>
+      </div>
+      <form class="rv" id="form" novalidate>
+        <div class="field"><label for="f-name">お名前<i>必須</i></label><input id="f-name" name="name" type="text" required autocomplete="name" placeholder="山田 太郎"></div>
+        <div class="field"><label for="f-tel">お電話番号<i>必須</i></label><input id="f-tel" name="tel" type="tel" required autocomplete="tel" placeholder="090-0000-0000"></div>
+        <div class="field full"><label for="f-mail">メールアドレス</label><input id="f-mail" name="email" type="email" autocomplete="email" placeholder="example@email.com"></div>
+        <div class="field"><label for="f-kind">ご相談内容<i>必須</i></label>
+          <select id="f-kind" name="kind" required>
+            <option value="">選択してください</option>
+            <option>外壁タイル（新規・補修）</option>
+            <option>浴室・水まわり</option>
+            <option>玄関・エントランス</option>
+            <option>キッチン</option>
+            <option>床・テラス</option>
+            <option>補修・張り替え（1枚〜）</option>
+            <option>その他・まだ決まっていない</option>
+          </select>
+        </div>
+        <div class="field"><label for="f-area">ご住所（市区町村まで）</label><input id="f-area" name="area" type="text" placeholder="横浜市青葉区"></div>
+        <div class="field full"><label for="f-msg">詳しい内容</label><textarea id="f-msg" name="msg" placeholder="例：浴室の壁タイルが数枚浮いているので、張り替えの見積もりをお願いしたい。築20年の戸建てです。"></textarea></div>
+        <div class="form-foot">
+          <small>送信後、翌営業日までにご連絡します。</small>
+          <button class="btn solid" type="submit">相談内容を送信する<svg class="arrow" viewBox="0 0 22 8" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M0 7h20M15 1l6 6"/></svg></button>
+        </div>
+        <div class="sent" id="sent" role="status"><b>送信を受け付けました</b><span>ありがとうございます。翌営業日までに、担当者よりお電話またはメールでご連絡いたします。</span><span style="font-size:12px;opacity:.7">※デモ版のため、実際には送信されていません。</span></div>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="brand">
+      <svg viewBox="0 0 34 34" aria-hidden="true" style="width:26px;height:26px"><g fill="none" stroke="#efe8da" stroke-width="1.2"><rect x="1" y="1" width="9.5" height="9.5"/><rect x="12.25" y="1" width="9.5" height="9.5"/><rect x="23.5" y="1" width="9.5" height="9.5"/><rect x="1" y="12.25" width="9.5" height="9.5"/><rect x="23.5" y="12.25" width="9.5" height="9.5"/><rect x="1" y="23.5" width="9.5" height="9.5"/><rect x="12.25" y="23.5" width="9.5" height="9.5"/><rect x="23.5" y="23.5" width="9.5" height="9.5"/></g><rect x="12.25" y="12.25" width="9.5" height="9.5" fill="#c6904f"/></svg>
+      <span><span class="name">YBF</span><span class="sub">株式会社YBF　横浜市青葉区</span></span>
+    </div>
+    <nav aria-label="フッター"><a href="#works">施工事例</a><a href="#services">事業内容</a><a href="#flow">ご依頼の流れ</a><a href="#company">会社概要</a><a href="#contact">お問い合わせ</a></nav>
+    <span class="copy">© 2026 YBF Co., Ltd.</span>
+  </div>
+</footer>
+
+<div class="lb" id="lb" aria-hidden="true">
+  <button class="lb-close" id="lbClose" aria-label="閉じる">×</button>
+  <div class="lb-inner" role="dialog" aria-modal="true" aria-labelledby="lbTitle">
+    <img id="lbImg" alt="">
+    <div class="lb-body">
+      <span class="cat" id="lbCat"></span>
+      <h3 id="lbTitle"></h3>
+      <p id="lbDesc"></p>
+      <dl>
+        <dt>場所</dt><dd id="lbLoc"></dd>
+        <dt>工事種別</dt><dd id="lbType"></dd>
+        <dt>使用タイル</dt><dd id="lbTile"></dd>
+        <dt>工期</dt><dd id="lbTerm"></dd>
+      </dl>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  var root=document.documentElement;root.classList.add('js');
+  var $=function(s,c){return (c||document).querySelector(s)};
+  var $$=function(s,c){return Array.prototype.slice.call((c||document).querySelectorAll(s))};
+
+  // demo banner
+  var demo=$('#demo');$('#demoClose').addEventListener('click',function(){demo.hidden=true});
+
+  // header solid on scroll
+  var header=$('#header');
+  function onScroll(){header.classList.toggle('solid',window.scrollY>40)}
+  window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+
+  // mobile nav
+  var burger=$('#burger'),mnav=$('#mobileNav');
+  function closeNav(){mnav.classList.remove('open');burger.setAttribute('aria-expanded','false');document.body.style.overflow=''}
+  burger.addEventListener('click',function(){mnav.classList.add('open');burger.setAttribute('aria-expanded','true');document.body.style.overflow='hidden'});
+  $('#navClose').addEventListener('click',closeNav);
+  $$('a',mnav).forEach(function(a){a.addEventListener('click',closeNav)});
+
+  // reveal on scroll (starts visible if IO missing)
+  var rv=$$('.rv');
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{rootMargin:'0px 0px -4% 0px',threshold:0});
+    rv.forEach(function(el){io.observe(el)});
+    // safety net: anything whose top is inside the viewport is shown, no matter what
+    function sweep(){rv.forEach(function(el){if(!el.classList.contains('in')){var r=el.getBoundingClientRect();if(r.top<innerHeight*0.96&&r.bottom>0)el.classList.add('in')}})}
+    setTimeout(sweep,60);window.addEventListener('scroll',sweep,{passive:true});window.addEventListener('resize',sweep);
+  }else{rv.forEach(function(el){el.classList.add('in')})}
+
+  // filters
+  var fbtns=$$('.filters button'),works=$$('.work');
+  fbtns.forEach(function(b){b.addEventListener('click',function(){
+    fbtns.forEach(function(x){x.setAttribute('aria-pressed',x===b?'true':'false')});
+    var f=b.getAttribute('data-f');
+    works.forEach(function(w){w.classList.toggle('hidden',f!=='all'&&w.getAttribute('data-f')!==f)});
+  })});
+
+  // lightbox
+  var lb=$('#lb'),lastFocus=null;
+  function openLb(w){
+    $('#lbImg').src=$('img',w).src;$('#lbImg').alt=$('img',w).alt;
+    $('#lbCat').textContent=w.getAttribute('data-cat');
+    $('#lbTitle').textContent=w.getAttribute('data-title');
+    $('#lbDesc').textContent=w.getAttribute('data-desc');
+    $('#lbLoc').textContent=w.getAttribute('data-loc');
+    $('#lbType').textContent=w.getAttribute('data-type');
+    $('#lbTile').textContent=w.getAttribute('data-tile');
+    $('#lbTerm').textContent=w.getAttribute('data-term');
+    lastFocus=w;lb.classList.add('open');lb.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';$('#lbClose').focus();
+  }
+  function closeLb(){lb.classList.remove('open');lb.setAttribute('aria-hidden','true');document.body.style.overflow='';if(lastFocus)lastFocus.focus()}
+  works.forEach(function(w){w.addEventListener('click',function(){openLb(w)})});
+  $('#lbClose').addEventListener('click',closeLb);
+  lb.addEventListener('click',function(e){if(e.target===lb)closeLb()});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeLb();closeNav()}});
+
+  // form (demo: no real submission)
+  var form=$('#form');
+  form.addEventListener('submit',function(e){
+    e.preventDefault();
+    var ok=true;
+    $$('[required]',form).forEach(function(f){
+      var bad=!f.value.trim();f.style.borderColor=bad?'#d2634a':'';if(bad)ok=false;
+    });
+    if(!ok){var first=$$('[required]',form).filter(function(f){return !f.value.trim()})[0];if(first)first.focus();return}
+    $$('.field,.form-foot',form).forEach(function(el){el.hidden=true});
+    $('#sent').classList.add('show');
+  });
+})();
+</script>
+</body>
+</html>
